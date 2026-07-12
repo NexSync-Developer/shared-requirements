@@ -6,12 +6,13 @@
 # einfach keine Pin (kein Fehler).
 #
 # Einbindung in der requirements.txt eines Bots:
-#   -c https://raw.githubusercontent.com/DEIN-USER/shared-requirements/main/constraints.txt
-#   discord.py
+#   -c https://raw.githubusercontent.com/NexSync-Developer/shared-requirements/main/constraints.txt
+#   nextcord
 #   requests
-#
-# Hier die tatsächlich genutzten Pakete inkl. Version eintragen, z. B.:
-# discord.py==2.4.0
-# nextcord==2.6.0
-# requests==2.32.3
-# python-dotenv==1.0.1
+
+nextcord==3.2.0
+coc.py==4.0.0
+python-dotenv==1.2.2
+pytz==2026.2
+redis==8.0.1
+requests==2.34.2
