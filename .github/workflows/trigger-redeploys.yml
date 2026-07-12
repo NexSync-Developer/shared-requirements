@@ -6,8 +6,8 @@ name: Trigger Bot Redeploys
 #
 # Voraussetzung: Für jeden Bot ein GitHub-Secret mit der Dokploy-Webhook-URL
 # anlegen (Repo → Settings → Secrets and variables → Actions), z. B.
-# DOKPLOY_WEBHOOK_BOT1, DOKPLOY_WEBHOOK_BOT2, DOKPLOY_WEBHOOK_BOT3.
-# Namen und Anzahl unten an die eigenen Bots anpassen.
+# DOKPLOY_WEBHOOK_ITZU. Für weitere Bots einfach nach demselben Muster
+# ein neues Secret anlegen und unten einen weiteren Step ergänzen.
 
 on:
   push:
@@ -19,9 +19,5 @@ jobs:
   redeploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Redeploy Bot 1
-        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT1 }}"
-      - name: Redeploy Bot 2
-        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT2 }}"
-      - name: Redeploy Bot 3
-        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT3 }}"
+      - name: Redeploy iTzu
+        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_ITZU }}"
