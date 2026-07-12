@@ -1,0 +1,27 @@
+name: Trigger Bot Redeploys
+
+# Löst bei jeder Änderung an constraints.txt (Push auf main) einen Redeploy
+# aller abhängigen Bot-Apps in Dokploy aus, indem deren Deploy-Webhooks
+# aufgerufen werden.
+#
+# Voraussetzung: Für jeden Bot ein GitHub-Secret mit der Dokploy-Webhook-URL
+# anlegen (Repo → Settings → Secrets and variables → Actions), z. B.
+# DOKPLOY_WEBHOOK_BOT1, DOKPLOY_WEBHOOK_BOT2, DOKPLOY_WEBHOOK_BOT3.
+# Namen und Anzahl unten an die eigenen Bots anpassen.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "constraints.txt"
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Redeploy Bot 1
+        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT1 }}"
+      - name: Redeploy Bot 2
+        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT2 }}"
+      - name: Redeploy Bot 3
+        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_BOT3 }}"

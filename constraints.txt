@@ -1,0 +1,17 @@
+# Zentrale Versionspins (pip Constraints-File) für alle Bot-Repos.
+#
+# Diese Datei installiert selbst KEINE Pakete. Sie pinnt nur die Version
+# für Pakete, die ein Bot in seiner eigenen requirements.txt ohnehin schon
+# anfordert. Fordert ein Bot ein Paket an, das hier nicht auftaucht, greift
+# einfach keine Pin (kein Fehler).
+#
+# Einbindung in der requirements.txt eines Bots:
+#   -c https://raw.githubusercontent.com/DEIN-USER/shared-requirements/main/constraints.txt
+#   discord.py
+#   requests
+#
+# Hier die tatsächlich genutzten Pakete inkl. Version eintragen, z. B.:
+# discord.py==2.4.0
+# nextcord==2.6.0
+# requests==2.32.3
+# python-dotenv==1.0.1
