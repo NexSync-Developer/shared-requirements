@@ -8,6 +8,12 @@ name: Trigger Bot Redeploys
 # anlegen (Repo → Settings → Secrets and variables → Actions), z. B.
 # DOKPLOY_WEBHOOK_ITZU. Für weitere Bots einfach nach demselben Muster
 # ein neues Secret anlegen und unten einen weiteren Step ergänzen.
+#
+# Dokploy erwartet ein Payload im Format eines echten GitHub-Push-Webhooks
+# (inkl. X-GitHub-Event-Header und "ref" im Format refs/heads/BRANCH_NAME).
+# Ohne das antwortet Dokploy mit {"message":"Branch Not Match"}.
+# BRANCH_NAME unten muss exakt dem in Dokploy für die jeweilige App
+# konfigurierten Deploy-Branch entsprechen (z. B. main).
 
 on:
   push:
@@ -20,4 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Redeploy iTzu
-        run: curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_ITZU }}"
+        run: |
+          curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_ITZU }}" \
+            -H "Content-Type: application/json" \
+            -H "X-GitHub-Event: push" \
+            -d '{"ref":"refs/heads/main","repository":{"full_name":"NexSync-Developer/iTzu"}}'
