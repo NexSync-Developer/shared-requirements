@@ -30,4 +30,4 @@ jobs:
           curl -fsS -X POST "${{ secrets.DOKPLOY_WEBHOOK_ITZU }}" \
             -H "Content-Type: application/json" \
             -H "X-GitHub-Event: push" \
-            -d '{"ref":"refs/heads/main","repository":{"full_name":"NexSync-Developer/iTzu"}}'
+            -d '{"ref":"refs/heads/main","repository":{"full_name":"NexSync-Developer/itz-push-discord-bot"}}'
